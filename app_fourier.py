@@ -5,11 +5,13 @@ import matplotlib.pyplot as plt
 from scipy import signal
 from PIL import Image
 
-st.title("Fourier Serier WebApp")
+st.title("Fourier Series WebApp")
 st.markdown(
     "This application is made por the subject of Communications 2 of the National Pedagogical University." +
     " With which, the graphing of different functions is proposed applying the trigonometric and complex Fourier series.")
-st.caption("Developed by Gustavo Briceño")
+st.caption("Developed by Gustavo Briceño and Jhojan Ochoa")
+img = Image.open('gb_logo.png')
+st.image(img, width=200)
 
 st.header("Trigonometric Fourier Series")
 img = Image.open('fourier.jpg')
@@ -19,13 +21,17 @@ st.latex(
 
 st.subheader("Select the type of signal that you want to simulate.")
 signal_type = st.selectbox(
-    "", options=["Exponential", "Triangular", "Square", "Rectified Sinusoidal", "Trapezoidal", "Quadratic", "Sine", "Cosine"], label_visibility="hidden")
+    "", options=["Exponential", "Triangular", "Sawtooth", "Square", "Rectified Sinusoidal", "Trapezoidal", "Quadratic", "Sine", "Cosine"], label_visibility="hidden")
 if(signal_type == "Exponential"):
     st.latex(r'''f(t) = Ae^{-kt}''')
 if(signal_type == "Triangular"):
-    st.latex(r'''f(t) = A*sawtooth(\frac{2π}{T}t,0.5)''')
+    st.latex(r'''f_{1}(t) = \frac{2t}{T},[0 < t < \frac{T}{2}]''')
+    st.latex(r'''f_{2}(t) = \frac{2(T-t)}{T},[\frac{T}{2} < t < T''')
+if(signal_type == "Sawtooth"):
+    st.latex(r'''f_{1}(t) = \frac{At}{T},[0 < t < T]''')
 if(signal_type == "Square"):
-    st.latex(r'''f(t) = A*square(\frac{2π}{T}t,0.5)''')
+    st.latex(r'''f_{1}(t) = A,[0 < t < \frac{T}{2}]''')
+    st.latex(r'''f_{2}(t) = -A,[\frac{T}{2} < t < T''')
 if(signal_type == "Rectified Sinusoidal"):
     st.latex(r'''f(t) = A|Sin(w_{0}t)|''')
 if(signal_type == "Trapezoidal"):
@@ -64,6 +70,9 @@ if(signal_type == "Exponential"):
 if(signal_type == "Triangular"):
     t = np.arange(0, T+dt, dt)
     f = A*signal.sawtooth(w0*t, 0.5)
+if(signal_type == "Sawtooth"):
+    t = np.arange(0, T+dt, dt)
+    f = A * t / T - np.floor(A * t / T)
 if(signal_type == "Square"):
     t = np.arange(0, 2*T+dt, dt)
     f = A*signal.square(w0*t, 0.5)
