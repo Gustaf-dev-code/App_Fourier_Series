@@ -11,7 +11,7 @@ st.markdown(
     " With which, the graphing of different functions is proposed applying the trigonometric and complex Fourier series.")
 st.caption("Developed by Gustavo Briceño and Jhojan Ochoa")
 img = Image.open('gb_logo.png')
-st.image(img, width=200)
+st.image(img, width=80)
 
 st.header("Trigonometric Fourier Series")
 img = Image.open('fourier.jpg')
