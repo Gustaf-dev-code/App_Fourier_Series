@@ -9,7 +9,7 @@ st.title("Fourier Series WebApp")
 st.markdown(
     "This application is made por the subject of Communications 2 of the National Pedagogical University." +
     " With which, the graphing of different functions is proposed applying the trigonometric and complex Fourier series.")
-st.caption("Developed by Gustavo Briceño and Jhojan Ochoa")
+st.caption("Developed by Gustavo Briceño")
 img = Image.open('gb_logo.png')
 st.image(img, width=120)
 
